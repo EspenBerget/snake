@@ -67,11 +67,6 @@ document.addEventListener("keydown", e => {
     }
 }, false);
 
-function drawSquare(x, y) {
-    // ctx.fillStyle = "green";
-    ctx.fillRect(x, y, size, size);
-}
-
 let rainbow = ctx.createLinearGradient(0, 0, 1200, 0);
 rainbow.addColorStop(0, "red");
 rainbow.addColorStop(0.1, "orange");
@@ -83,9 +78,9 @@ rainbow.addColorStop(1, "indigo");
 
 function drawSnake() {
     ctx.fillStyle = rainbow;
-    drawSquare(head.x, head.y);
+    ctx.fillRect(head.x, head.y, size, size);
     for (let b of snake) {
-        drawSquare(b.x, b.y);
+        ctx.fillRect(b.x, b.y, size, size);
     }
 }
 

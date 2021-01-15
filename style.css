@@ -11,6 +11,21 @@ html, body {
     background: rgb(70, 9, 49);
 }
 
+#error {
+    display: none;
+}
+
+@media(max-width: 1400px) {
+    canvas, #points, #info, #scoreboard {
+        display: none;
+    }
+
+    #error {
+        display: block;
+        color: red;
+    }
+}
+
 #points {
     font-family: monospace;
     font-size: xx-large;
