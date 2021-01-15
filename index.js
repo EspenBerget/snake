@@ -115,10 +115,27 @@ function moveSnake() {
     return false;
 }
 
+function drawGrid() {
+    ctx.fillStyle="white";
+    for (let x = 0; x < 48; x++) {
+        ctx.beginPath();
+        ctx.moveTo(x*size, 0);
+        ctx.lineTo(x*size, gameWindow.height);
+        ctx.stroke();
+    }
+    for (let y = 0; y < 24; y++) {
+        ctx.beginPath();
+        ctx.moveTo(0, y*size);
+        ctx.lineTo(gameWindow.width, y*size);
+        ctx.stroke();
+    }
+}
+
 function randomFood() {
     do {
-        food.x = Math.floor(Math.random() * gameWindow.width); 
-        food.y = Math.floor(Math.random() * gameWindow.height);
+        // This palces the red dot in the center
+        food.x = Math.floor(Math.random() * 48) * size + 12.5;  // 48
+        food.y = Math.floor(Math.random() * 24) * size + 12.5;  // 24
     } while (withinSnake(food.x, food.y));
 }
 
@@ -138,6 +155,7 @@ function run() {
         snake.pop();
     }
     clear();
+    drawGrid();
     drawFood();
     drawSnake();
     displayPoints();
