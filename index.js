@@ -200,11 +200,14 @@ function addScore(name) {
     scoreDisplay.appendChild(row);
 }
 
+let prev = "";
+
 function gameover() {
     clearInterval(interval);
-    let name = prompt("Game Over!\nAdd player name\n(leave empty to drop score)", "");
+    let name = prompt("Game Over!\nAdd player name\n(leave empty to drop score)", prev);
     if (name !== "") {
         addScore(name);
+        prev = name;
     }
     pointsDisplay.innerText = "Press space to start";
     document.addEventListener("keypress", space);
