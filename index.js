@@ -35,7 +35,7 @@ function init() {
     move = "ArrowRight";
     head = {x: 100, y: 100};
     snake = [{x: head.x - size, y: 100}, {x: head.x - (size*2), y: 100}, {x: head.x - (size*3), y: 100}];
-    interval = setInterval(run, 100);
+    interval = setInterval(run, 60);
 }
 
 
@@ -43,21 +43,46 @@ document.addEventListener("keydown", e => {
     if (!changed) {
         return;
     }
-    if ((e.key == "ArrowUp" && move != "ArrowDown")
-        || (e.key == "ArrowDown" && move != "ArrowUp")
-        || (e.key == "ArrowLeft" && move != "ArrowRight")
-        || (e.key == "ArrowRight" && move != "ArrowLeft")) {
-        move = e.key
+    let key = e.key;
+    switch (key) {
+        case "w":
+            key = "ArrowUp";
+            break;
+        case "s":
+            key = "ArrowDown";
+            break;
+        case "d":
+            key = "ArrowRight";
+            break;
+        case "a":
+            key = "ArrowLeft";
+            break;
+    }
+    if (   (key == "ArrowUp"    && move != "ArrowDown")
+        || (key == "ArrowDown"  && move != "ArrowUp")
+        || (key == "ArrowLeft"  && move != "ArrowRight")
+        || (key == "ArrowRight" && move != "ArrowLeft")) {
+        move = key
         changed = false;
     }
 }, false);
 
 function drawSquare(x, y) {
-    ctx.fillStyle = "green";
+    // ctx.fillStyle = "green";
     ctx.fillRect(x, y, size, size);
 }
 
+let rainbow = ctx.createLinearGradient(0, 0, 1200, 0);
+rainbow.addColorStop(0, "red");
+rainbow.addColorStop(0.1, "orange");
+rainbow.addColorStop(0.3, "yellow");
+rainbow.addColorStop(0.5, "green");
+rainbow.addColorStop(0.7, "blue");
+rainbow.addColorStop(0.8, "violet");
+rainbow.addColorStop(1, "indigo");
+
 function drawSnake() {
+    ctx.fillStyle = rainbow;
     drawSquare(head.x, head.y);
     for (let b of snake) {
         drawSquare(b.x, b.y);
