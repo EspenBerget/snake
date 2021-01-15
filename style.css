@@ -11,16 +11,6 @@ html, body {
     background: rgb(70, 9, 49);
 }
 
-
-button {
-    background-color: rgb(40, 40, 40);
-    border: none;
-    color: orange;
-    width: 3rem;
-    height: 3rem;
-    margin: 1rem;
-}
-
 #points {
     font-family: monospace;
     font-size: xx-large;
@@ -29,7 +19,7 @@ button {
 
 #info {
     position: fixed;
-    right: calc(100vw - 1200px - 10rem);
+    right: 2rem;
     top: 1rem;
     color:rgb(55, 172, 26);
 }

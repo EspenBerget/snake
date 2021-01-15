@@ -5,7 +5,7 @@ const ctx = gameWindow.getContext('2d');
 
 
 let changed = true; // set when a move has been made
-let move = "d";
+let move = "ArrowRight";
 
 const size = 25;
 const step = size;
@@ -22,20 +22,26 @@ function init() {
     clearInterval(interval);
     randomFood();
     points = 0;
-    move = "d";
+    move = "ArrowRight";
     head = {x: 100, y: 100};
     snake = [{x: head.x - size, y: 100}, {x: head.x - (size*2), y: 100}, {x: head.x - (size*3), y: 100}];
     interval = setInterval(run, 100);
 }
 
+document.addEventListener("keypress", e => {
+    if (e.key == " ") {
+        init();
+    }
+});
+
 document.addEventListener("keydown", e => { 
     if (!changed) {
         return;
     }
-    if ((e.key == "w" && move != "s")
-        || (e.key == "s" && move != "w")
-        || (e.key == "d" && move != "a")
-        || (e.key == "a" && move != "d")) {
+    if ((e.key == "ArrowUp" && move != "ArrowDown")
+        || (e.key == "ArrowDown" && move != "ArrowUp")
+        || (e.key == "ArrowLeft" && move != "ArrowRight")
+        || (e.key == "ArrowRight" && move != "ArrowLeft")) {
         move = e.key
         changed = false;
     }
@@ -76,28 +82,28 @@ function drawFood() {
 function moveSnake() {
     snake.unshift({...head});
     switch (move) {
-        case "w":
+        case "ArrowUp":
             if (head.y > 0) {
                 head.y -= step;
             } else {
                 return true;
             }
             break;
-        case "s":
+        case "ArrowDown":
             if (head.y+size < gameWindow.height) {
                 head.y += step;
             } else {
                 return true;
             }
             break;
-        case "d":
+        case "ArrowRight":
             if (head.x+size < gameWindow.width) {
                 head.x += step;
             } else {
                 return true;
             }
             break;
-        case "a":
+        case "ArrowLeft":
             if (head.x > 0) {
                 head.x -= step;
             } else {
