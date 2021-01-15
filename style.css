@@ -23,3 +23,14 @@ html, body {
     top: 1rem;
     color:rgb(55, 172, 26);
 }
+
+footer {
+    position:fixed;
+    bottom: 1rem;
+    right: 1rem;
+    color: white;
+}
+
+footer p a {
+    color: white;
+}
