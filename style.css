@@ -25,6 +25,32 @@ html, body {
     color:rgb(55, 172, 26);
 }
 
+#scoreboard {
+    height: 600px;
+    width: calc(100vw - 1200px);
+
+    position: fixed;
+    right: 0;
+    top: 0;
+
+    border-collapse: collapse;
+
+    background-color: gray;
+    color: black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: space-evenly;
+}
+
+td, th {
+    padding-left: 3rem;
+}
+
+#scoreboard tbody {
+    overflow: scroll;
+}
+
 footer {
     position:fixed;
     bottom: 1rem;

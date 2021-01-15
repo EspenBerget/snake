@@ -1,4 +1,5 @@
 const pointsDisplay = document.getElementById("points");
+const scoreDisplay = document.getElementById("score");
 
 const gameWindow = document.getElementById("game-window");
 const ctx = gameWindow.getContext('2d');
@@ -18,7 +19,16 @@ let points = 0;
 
 let interval = null;
 
+const space = e => {
+    if (e.key = " ") {
+        init();
+    }
+};
+
+document.addEventListener("keypress", space);
+
 function init() {
+    document.removeEventListener("keypress", space);
     clearInterval(interval);
     randomFood();
     points = 0;
@@ -28,11 +38,6 @@ function init() {
     interval = setInterval(run, 100);
 }
 
-document.addEventListener("keypress", e => {
-    if (e.key == " ") {
-        init();
-    }
-});
 
 document.addEventListener("keydown", e => { 
     if (!changed) {
@@ -161,12 +166,28 @@ function run() {
     displayPoints();
 }
 
+function addScore(name) {
+    let player = document.createElement("td");
+    let score = document.createElement("td");
+    let row = document.createElement("tr");
+
+    player.innerText = name;
+    score.innerText = points;
+
+    row.appendChild(player);
+    row.appendChild(score);
+
+    scoreDisplay.appendChild(row);
+}
 
 function gameover() {
     clearInterval(interval);
+    let name = prompt("Game Over!\nAdd player name\n(leave empty to drop score)", "");
+    if (name !== "") {
+        addScore(name);
+    }
     pointsDisplay.innerText = "Press space to start";
-    interval = null;
-    alert("Game Over");
+    document.addEventListener("keypress", space);
 }
 
 
