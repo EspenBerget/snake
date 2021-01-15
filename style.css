@@ -20,12 +20,15 @@ html, body {
 
 #info {
     position: fixed;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     left: 1rem;
     bottom: 1rem;
     color:rgb(55, 172, 26);
 }
 
 #scoreboard {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
     height: 600px;
     width: calc(100vw - 1200px);
 
@@ -52,6 +55,7 @@ td, th {
 }
 
 footer {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     position:fixed;
     bottom: 1rem;
     right: 1rem;
