@@ -146,6 +146,7 @@ function run() {
 
 function gameover() {
     clearInterval(interval);
+    pointsDisplay.innerText = "Press space to start";
     interval = null;
     alert("Game Over");
 }
