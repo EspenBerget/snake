@@ -70,7 +70,7 @@ document.addEventListener("keydown", e => {
     }
 }, false);
 
-let rainbow = ctx.createLinearGradient(0, 0, 1200, 0);
+let rainbow = ctx.createLinearGradient(0, 0, 800, 0);
 rainbow.addColorStop(0, "red");
 rainbow.addColorStop(0.1, "orange");
 rainbow.addColorStop(0.3, "yellow");
