@@ -15,8 +15,8 @@ html, body {
     display: none;
 }
 
-@media(max-width: 1400px) {
-    canvas, #points, #info, #scoreboard {
+@media(max-width: 1000px) {
+    canvas, #points, #info, #speed, #speed-display, #scoreboard {
         display: none;
     }
 
@@ -25,6 +25,35 @@ html, body {
         color: red;
     }
 }
+
+
+
+#speed {
+    margin-top: 1rem;
+    appearance: none;
+    background-color:rgb(26, 26, 26);
+    height: 4px;
+    width: 650px;
+}
+
+#speed:focus {
+    outline: none;
+}
+
+#speed-display {
+    margin-left: 1rem;
+    color:rgb(55, 172, 26);
+}
+
+#speed-display::before {
+    content: "slower";
+}
+
+#speed-display::after {
+    content: "faster";
+}
+
+
 
 #points {
     font-family: monospace;
@@ -45,28 +74,34 @@ html, body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
     height: 600px;
-    width: calc(100vw - 1200px);
+    width: calc(100vw - 800px);
 
     position: fixed;
     right: 0;
     top: 0;
 
+    table-layout: fixed;
     border-collapse: collapse;
 
     background-color: gray;
     color: black;
-
-    display: flex;
-    flex-direction: column;
-    align-items: space-evenly;
 }
 
-td, th {
-    padding-left: 3rem;
+#scoreboard thead tr {
+    display: block;
 }
 
 #scoreboard tbody {
-    overflow: scroll;
+    display: block;
+    width: 100%;
+    overflow: auto;
+    height: 550px;
+}
+
+td, th {
+    text-align: left;
+    padding: 0.5rem;
+    width: 200px;
 }
 
 footer {

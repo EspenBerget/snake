@@ -8,11 +8,14 @@
     </head>
     <body>
         <p id="error">Screen must be at least 1400px wide</p>
-        <canvas id="game-window" width=1200 height=600>
+        <canvas id="game-window" width=800 height=600>
             Sorry! Looks like your browser don't support the canvas element.
         </canvas>
         <div>
             <span id="points">Press space to start</span>
+        </div>
+        <div id="speed-display">
+            <input type="range" min="1" max="100" value="50" id="speed">
         </div>
         <div id="info">
             <p>Tap w or up arrow to move up<br />
@@ -25,6 +28,8 @@
                <tr>
                    <th>Player</th>
                    <th>Score</th>
+                   <th>Speed</th>
+                   <th>Total</th>
                </tr> 
             </thead>
             <tbody id="score">

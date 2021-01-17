@@ -1,5 +1,6 @@
 const pointsDisplay = document.getElementById("points");
 const scoreDisplay = document.getElementById("score");
+const speed = document.getElementById("speed");
 
 const gameWindow = document.getElementById("game-window");
 const ctx = gameWindow.getContext('2d');
@@ -18,6 +19,7 @@ let food = {x: 0, y: 0};
 let points = 0;
 
 let interval = null;
+let curSpeed = 50;
 
 const space = e => {
     if (e.key = " ") {
@@ -29,13 +31,14 @@ document.addEventListener("keypress", space);
 
 function init() {
     document.removeEventListener("keypress", space);
+    curSpeed = speed.value;
     clearInterval(interval);
     randomFood();
     points = 0;
     move = "ArrowRight";
     head = {x: 100, y: 100};
     snake = [{x: head.x - size, y: 100}, {x: head.x - (size*2), y: 100}, {x: head.x - (size*3), y: 100}];
-    interval = setInterval(run, 60);
+    interval = setInterval(run, 150 - curSpeed);
 }
 
 
@@ -67,7 +70,7 @@ document.addEventListener("keydown", e => {
     }
 }, false);
 
-let rainbow = ctx.createLinearGradient(0, 0, 1200, 600);
+let rainbow = ctx.createLinearGradient(0, 0, 1200, 0);
 rainbow.addColorStop(0, "red");
 rainbow.addColorStop(0.1, "orange");
 rainbow.addColorStop(0.3, "yellow");
@@ -142,7 +145,7 @@ function moveSnake() {
 
 function drawGrid() {
     ctx.fillStyle="white";
-    for (let x = 0; x < 48; x++) {
+    for (let x = 0; x < 32; x++) {
         ctx.beginPath();
         ctx.moveTo(x*size, 0);
         ctx.lineTo(x*size, gameWindow.height);
@@ -158,9 +161,9 @@ function drawGrid() {
 
 function randomFood() {
     do {
-        // This palces the red dot in the center
-        food.x = Math.floor(Math.random() * 48) * size + 12.5;  // 48
-        food.y = Math.floor(Math.random() * 24) * size + 12.5;  // 24
+        // This places the red dot in the center
+        food.x = Math.floor(Math.random() * 32) * size + 12.5;  
+        food.y = Math.floor(Math.random() * 24) * size + 12.5; 
     } while (withinSnake(food.x, food.y));
 }
 
@@ -189,13 +192,19 @@ function run() {
 function addScore(name) {
     let player = document.createElement("td");
     let score = document.createElement("td");
+    let speedScore = document.createElement("td");
+    let total = document.createElement("td");
     let row = document.createElement("tr");
 
     player.innerText = name;
     score.innerText = points;
+    speedScore.innerText = curSpeed;
+    total.innerText = points*curSpeed;
 
     row.appendChild(player);
     row.appendChild(score);
+    row.appendChild(speedScore);
+    row.appendChild(total);
 
     scoreDisplay.appendChild(row);
 }
