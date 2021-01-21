@@ -23,6 +23,7 @@ let curSpeed = 50;
 
 const space = e => {
     if (e.key = " ") {
+        e.preventDefault();
         init();
     }
 };
